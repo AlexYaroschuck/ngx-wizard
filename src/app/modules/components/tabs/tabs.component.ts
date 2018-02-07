@@ -3,7 +3,7 @@ import { TabDirective } from "../../directives/tab.directive";
 
 @Component({
     selector: 'tabs',
-    templateUrl: './src/app/modules/components/tabs/tabs.component.html',
+    templateUrl: '../../../../../src/app/modules/components/tabs/tabs.component.html',
 })
 export class TabsComponent implements AfterViewInit, OnInit, OnDestroy {
     @Input("class") tabsClass: string;
