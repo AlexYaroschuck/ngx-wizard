@@ -1,0 +1,12 @@
+node_modules/
+typings/
+src/**/*.js
+src/**/*.map
+example/**/*.js
+example/**/*.map
+playground/**/*.js
+playground/**/*.map
+.idea/
+dist/
+!example/*.js
+!playground/*.js

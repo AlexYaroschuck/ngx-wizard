@@ -1,0 +1,36 @@
+<div class="wizard-container">
+
+    <div class="nav-center">
+        <ul class="nav nav-pills nav-pills-warning nav-pills-icons" role="tablist">
+            <ng-container *ngFor="let tab of tabs">
+                <li (click)="tab.active = true" [class.active]="tab.active" >
+                    <a data-toggle="tab" role="tab" [ngClass]="tab.customClass">
+                        <i class="material-icons">{{ tab.icon }}</i>
+                        <div class="tab-info">
+                            {{ tab.heading }}
+                        </div>
+                    </a>
+                </li>
+            </ng-container>
+        </ul>
+    </div>
+
+    <div [attr.data-color]="color" id="wizardProfile">
+        <ng-content select=".wizard-header"></ng-content>
+
+        <div class="tab-content">
+            <ng-content></ng-content>
+        </div>
+
+        <div class="wizard-footer">
+            <div class="pull-right" *ngIf="nextButtonVisible">
+                <input #nextButton type='button' class='btn btn-next btn-fill btn-wd' [ngClass]="'btn-' + color" name='next' [value]='nextButtonText' (click)="nextTab()"/>
+            </div>
+            <div class="pull-left" *ngIf="previousButtonVisible">
+                <input #previosButton type='button' class='btn btn-previous btn-fill btn-default btn-wd' name='previous' [value]='previousButtonText' (click)="previousTab()"/>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+</div>
+

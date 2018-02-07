@@ -1,0 +1,9 @@
+{
+  "$schema": "./node_modules/ng-packagr/ng-package.schema.json",
+  "name": "ngx-wizard",
+  "workingDirectory": ".ng_build",
+  "debug" : true,
+  "lib": {
+    "entryFile": "./public_api.ts"
+  }
+}

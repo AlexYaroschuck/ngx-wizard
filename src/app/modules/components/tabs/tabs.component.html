@@ -1,0 +1,12 @@
+<div [ngClass]="tabsClass">
+    <ul class="nav" [ngClass]="classMap" (click)="$event.preventDefault()">
+        <li *ngFor="let tabz of tabs" [ngClass]="['nav-item', tabz.customClass || '']" [class.active]="tabz.active" [class.disabled]="tabz.disabled">
+            <a href="javascript:void(0);" class="nav-link" [class.active]="tabz.active" [class.disabled]="tabz.disabled" (click)="tabz.active = true">
+                <span [ngTransclude]="tabz.headingRef"><i *ngIf="!stringHelper.isNullOrEmpty(tabz.icon)" class="material-icons">{{tabz.icon}}</i>{{tabz.heading}}</span>
+            </a>
+        </li>
+    </ul>
+</div>
+<div class="tab-content">
+    <ng-content></ng-content>
+</div>
