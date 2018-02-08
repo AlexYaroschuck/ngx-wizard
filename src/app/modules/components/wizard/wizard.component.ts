@@ -7,8 +7,7 @@ declare var $ :any;
 
 @Component({
     selector: 'wizard',
-    templateUrl: './wizard.component.html',
-    moduleId: module.id.toString(),
+    templateUrl: '../../../../../src/app/modules/components/wizard/wizard.component.html',
     providers: [{provide: TabsComponent, useExisting: forwardRef(() => WizardComponent)}]
 })
 export class WizardComponent extends TabsComponent {
