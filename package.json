@@ -1,11 +1,15 @@
 {
   "name": "ngx-wizard",
-  "version": "0.0.2",
+  "version": "0.0.4",
   "scripts": {
     "start": "tsc -p playground && tsc -p src && concurrently \"tsc -p playground -w\" \"tsc -p src -w\" \"lite-server --config sync-bs-config.json\" ",
     "packagr": "ng-packagr -p ng-package.json",
     "yarn" : "yarn",
     "build" : "ngc -p src/tsconfig.webpack.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/AlexYaroschuck/ngx-wizard"
   },
   "license": "MIT",
   "peerDependencies": {},
