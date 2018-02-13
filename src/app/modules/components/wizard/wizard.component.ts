@@ -3,6 +3,7 @@ import { TabsComponent } from "../tabs/tabs.component";
 
 import "jquery";
 import { TabDirective } from "../../directives/tab.directive";
+import { SelectEvent } from "../../../objects/events/selectEvent";
 declare var $ :any;
 
 @Component({
@@ -33,13 +34,26 @@ export class WizardComponent extends TabsComponent {
         });
     }
 
-    public nextTab(): void {
-        if (this.activeTab.index >= this.tabs.length - 1) {
+    public nextTab(emitContinue: boolean = true): void {
+        if(emitContinue){//TODO think!!
+            let continueEvent = new SelectEvent(this.activeTab);
+            this.activeTab.onContinueClicked.emit(continueEvent);
+
+            if(continueEvent._preventDefault) {
+                return;
+            }
+        }
+
+        if (this.activeTab.index >= Math.max(...this.tabs.map(x=> x.index))) {
             this.finish.emit();
             return;
         }
 
-        this.tabs[this.activeTab.index + 1].active = true;
+        //this.tabs[this.activeTab.index + 1].active = true;
+        let nextTab = this.tabs.find(x=> x.index >= this.activeTab.index + 1);
+
+        if(nextTab)
+            nextTab.active = true;
     }
 
     public previousTab(): void {

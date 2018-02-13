@@ -4,7 +4,6 @@ export class SelectEvent {
     public target: TabDirective;
     public _preventDefault: boolean = false;
 
-
     constructor(target: TabDirective) {
         this.target = target;
     }

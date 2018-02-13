@@ -2,6 +2,7 @@ import { Directive, EventEmitter, HostBinding, Input, Output, TemplateRef, OnIni
 import { SelectEvent } from "../../objects/events/selectEvent";
 import { TabsComponent } from "../components/tabs/tabs.component";
 import { CheckEvent } from "../../objects/events/checkEvent";
+import { WizardComponent } from "../components/wizard/wizard.component";
 
 @Directive({selector: 'tab, [tab]'})
 export class TabDirective implements OnInit, OnDestroy {
@@ -12,7 +13,20 @@ export class TabDirective implements OnInit, OnDestroy {
     @Input() public customClass: string;
     @Input() public icon: string;
     @Input() public previousButton: string;
-    @Input() public nextButton: string;
+
+    private _nextButton:string;
+
+    @Input() public set nextButton(val: string){
+        this._nextButton = val;
+        let t = this.tabsComponent as WizardComponent;
+
+        t.nextButtonText = val;
+        t.nextButtonVisible = t.nextButtonText != "hidden";
+    };
+
+    public get nextButton(): string{
+        return this._nextButton;
+    }
 
     @Input() public isTabCombined: boolean = false;
 
@@ -25,12 +39,17 @@ export class TabDirective implements OnInit, OnDestroy {
     @Input()
     public set index(val:number){
         if(val === -1){
-            this.tabsComponent.removeTab(this);
+            this.tabsComponent.removeTab(this, {reselect:true, emit:true, removeNative: false});
             this._index = val;
             return;
         }
 
         this._index = val;
+
+        //if no tab
+        if(!this.tabsComponent.tabs.find(x => x == this))
+            this.tabsComponent.addTab(this);
+
         this.tabsComponent.sortTabs();
     }
 
@@ -80,6 +99,7 @@ export class TabDirective implements OnInit, OnDestroy {
     @Output() public isSelect: EventEmitter<SelectEvent> = new EventEmitter(false);
     @Output() public deselect: EventEmitter<TabDirective> = new EventEmitter();
     @Output() public removed: EventEmitter<TabDirective> = new EventEmitter();
+    @Output() public onContinueClicked: EventEmitter<SelectEvent> = new EventEmitter();
 
     @HostBinding('class.tab-pane') public addClass: boolean = true;
 
@@ -92,10 +112,11 @@ export class TabDirective implements OnInit, OnDestroy {
     }
 
     public ngOnInit(): void {
-        this.tabsComponent.addTab(this);
+        if(!this.tabsComponent.tabs.find(x => x == this))
+            this.tabsComponent.addTab(this);
     }
 
     public ngOnDestroy(): void {
-        this.tabsComponent.removeTab(this, {reselect: false, emit: false});
+        this.tabsComponent.removeTab(this, {reselect: false, emit: false, removeNative: true});
     }
 }

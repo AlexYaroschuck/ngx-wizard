@@ -44,7 +44,7 @@ export class TabsComponent implements AfterViewInit, OnInit, OnDestroy {
         this.tabs = this.tabs.sort((a,b)=> a.index < b.index ? -1: 1);
     }
 
-    public removeTab(tab: TabDirective, options = { reselect: true, emit: true }): void {
+    public removeTab(tab: TabDirective, options = { reselect: true, emit: true, removeNative: true }): void {
         if (tab.index === -1 || this.isDestroyed) {
             return;
         }
@@ -57,8 +57,9 @@ export class TabsComponent implements AfterViewInit, OnInit, OnDestroy {
             tab.removed.emit(tab);
         }
         this.tabs.splice(tab.index, 1);
-        if (tab.elementRef.nativeElement && tab.elementRef.nativeElement.remove) {
-            tab.elementRef.nativeElement.remove();
+
+        if (tab.elementRef.nativeElement && tab.elementRef.nativeElement.remove && options.removeNative) {
+          tab.elementRef.nativeElement.remove();
         }
     }
 
