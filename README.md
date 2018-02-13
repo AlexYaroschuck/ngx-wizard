@@ -6,6 +6,7 @@ Simple angular library for creating wizard. For now without styles
 
 # Prerequisite
  Angular is required.
+ Bootstrap is required.
 
 # Installation
 #### npm
@@ -47,8 +48,8 @@ import { WizardModule } from "ngx-wizard";
 # Wizard Options
 ``` ts
 /*Input params*/
- nextButtonClass: string = "pull-right" //=> will add custom class to the nextButton, default class is "pull-right"
- prevButtonClass: string = "pull-left" //=> will add custom class to the previousButton, default class is "pull-left"
+ nextButtonClass: string = "pull-right" //=> will add custom class to the nextButton, default class is "btn btn-next btn-fill btn-wd"
+ prevButtonClass: string = "pull-left" //=> will add custom class to the previousButton, default class is "btn btn-previous btn-fill btn-default btn-wd"
 ```
 # Tab Options
 ``` ts

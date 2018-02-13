@@ -23,11 +23,11 @@
         </div>
 
         <div class="wizard-footer">
-            <div *ngIf="nextButtonVisible" [ngClass]="nextButtonClass">
-                <input #nextButton type='button' class='btn btn-next btn-fill btn-wd' [ngClass]="'btn-' + color" name='next' [value]='nextButtonText' (click)="nextTab()"/>
+            <div *ngIf="nextButtonVisible">
+                <input #nextButton type='button' [ngClass]="nextButtonClass" name='next' [value]='nextButtonText' (click)="nextTab()"/>
             </div>
-            <div *ngIf="previousButtonVisible"  [ngClass]="prevButtonClass">
-                <input #previosButton type='button' class='btn btn-previous btn-fill btn-default btn-wd' name='previous' [value]='previousButtonText' (click)="previousTab()"/>
+            <div *ngIf="previousButtonVisible" >
+                <input #previosButton type='button' [ngClass]="prevButtonClass" name='previous' [value]='previousButtonText' (click)="previousTab()"/>
             </div>
             <div class="clearfix"></div>
         </div>

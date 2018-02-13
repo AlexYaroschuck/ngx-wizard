@@ -12,22 +12,20 @@ declare var $ :any;
     providers: [{provide: TabsComponent, useExisting: forwardRef(() => WizardComponent)}]
 })
 export class WizardComponent extends TabsComponent {
-    @Input() public nextButtonClass: string = "pull-right";
-    @Input() public prevButtonClass: string = "pull-left";
+    @Input() public nextButtonClass: string = "btn btn-next btn-fill btn-wd";
+    @Input() public prevButtonClass: string = "btn btn-previous btn-fill btn-default btn-wd";
     @Input() public previousButton: string;
     @Input() public nextButton: string;
     public previousButtonText: string;
     public nextButtonText: string;
     public previousButtonVisible: boolean;
     public nextButtonVisible: boolean;
-    public color: string;
     @Output() public finish: EventEmitter<WizardComponent> = new EventEmitter();
 
 
     constructor(elementRef: ElementRef) {
         super();
 
-        this.color = elementRef.nativeElement.dataset["color"] || "cyan";
     }
 
     public ngAfterViewInit(): void {
