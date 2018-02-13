@@ -12,6 +12,8 @@ declare var $ :any;
     providers: [{provide: TabsComponent, useExisting: forwardRef(() => WizardComponent)}]
 })
 export class WizardComponent extends TabsComponent {
+    @Input() public nextButtonClass: string = "pull-right";
+    @Input() public prevButtonClass: string = "pull-left";
     @Input() public previousButton: string;
     @Input() public nextButton: string;
     public previousButtonText: string;
