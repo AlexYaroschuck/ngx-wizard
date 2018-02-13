@@ -33,7 +33,7 @@ import { WizardModule } from "ngx-wizard";
 
 # Examples
 ``` html
-<wizard>
+<wizard nextButtonClass='my-custom-class' prevButtonClass='my-custom-class'>
 	<tab [index]="1" previousButton="hidden" nextButton="hidden" icon="iso" class="my_class">
 		<!--Any content that you need-->
 	</tab>
@@ -43,6 +43,12 @@ import { WizardModule } from "ngx-wizard";
 	</tab>
 	<!-- Any anounts of tabs -->
 </wizard>
+```
+# Wizard Options
+``` ts
+/*Input params*/
+ nextButtonClass: string = "pull-right" //=> will add custom class to the nextButton, default class is "pull-right"
+ prevButtonClass: string = "pull-left" //=> will add custom class to the previousButton, default class is "pull-left"
 ```
 # Tab Options
 ``` ts
@@ -61,6 +67,7 @@ isSelect - EventEmitter //=> fires when tab selected
 deselect - EventEmitter //=> fires when tab deselected
 removed- EventEmitter //=> fires when tab removed
 check - EventEmitter //=> fires when tab checked
+onContinueClicked - EventEmitter //=> fires when nextButton clicked
 
 ```
 
