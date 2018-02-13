@@ -5,7 +5,7 @@ Simple angular library for creating wizard. For now without styles
 [![NPM](https://nodei.co/npm/ngx-wizard.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/ngx-wizard/)
 
 # Prerequisite
- Angular is not required.
+ Angular is required.
 
 # Installation
 #### npm
