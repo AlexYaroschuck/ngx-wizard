@@ -56,7 +56,10 @@ export class TabsComponent implements AfterViewInit, OnInit, OnDestroy {
         if (options.emit) {
             tab.removed.emit(tab);
         }
-        this.tabs.splice(tab.index, 1);
+
+        let itemIndex = this.tabs.indexOf(this.tabs.find(x=> x.index == tab.index));
+
+        this.tabs.splice(itemIndex, 1);
 
         if (tab.elementRef.nativeElement && tab.elementRef.nativeElement.remove && options.removeNative) {
           tab.elementRef.nativeElement.remove();
