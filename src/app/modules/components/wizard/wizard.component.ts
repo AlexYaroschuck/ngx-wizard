@@ -1,31 +1,36 @@
-import {Component, ElementRef, EventEmitter, forwardRef, Input, Output, ViewChild} from "@angular/core";
+import { Component, ElementRef, EventEmitter, forwardRef, Input, Output, ViewChild } from "@angular/core";
 import { TabsComponent } from "../tabs/tabs.component";
 
 import "jquery";
 import { TabDirective } from "../../directives/tab.directive";
 import { SelectEvent } from "../../../objects/events/selectEvent";
-declare var $ :any;
+
+declare var $: any;
 
 @Component({
     selector: 'wizard',
     templateUrl: '../../../../../src/app/modules/components/wizard/wizard.component.html',
-    providers: [{provide: TabsComponent, useExisting: forwardRef(() => WizardComponent)}]
+    providers: [{ provide: TabsComponent, useExisting: forwardRef(() => WizardComponent) }]
 })
 export class WizardComponent extends TabsComponent {
     @Input() public nextButtonClass: string = "btn btn-next btn-fill btn-wd";
     @Input() public prevButtonClass: string = "btn btn-previous btn-fill btn-default btn-wd";
     @Input() public previousButton: string;
     @Input() public nextButton: string;
+    @Input() public showProgressBar: boolean = false;
+    @Input() public showHeader: boolean = true;
+
     public previousButtonText: string;
     public nextButtonText: string;
     public previousButtonVisible: boolean;
     public nextButtonVisible: boolean;
+    public currentProgress: number = 0;
+
     @Output() public finish: EventEmitter<WizardComponent> = new EventEmitter();
 
 
     constructor(elementRef: ElementRef) {
         super();
-
     }
 
     public ngAfterViewInit(): void {
@@ -34,25 +39,35 @@ export class WizardComponent extends TabsComponent {
         });
     }
 
+    public get progress(): number {
+        let currentTab = this.tabs.find(x => x.index >= this.activeTab.index);
+        let activeTabs = this.tabs.filter(tab => tab.index >= 0);
+
+        let index = activeTabs.indexOf(currentTab);
+        let multiple = 100 / (activeTabs.length - 1);
+
+        return index >= 0 ? index * multiple : 0;
+    }
+
     public nextTab(emitContinue: boolean = true): void {
-        if(emitContinue){//TODO think!!
+        if (emitContinue) {//TODO think!!
             let continueEvent = new SelectEvent(this.activeTab);
             this.activeTab.onContinueClicked.emit(continueEvent);
 
-            if(continueEvent._preventDefault) {
+            if (continueEvent._preventDefault) {
                 return;
             }
         }
 
-        if (this.activeTab.index >= Math.max(...this.tabs.map(x=> x.index))) {
+        if (this.activeTab.index >= Math.max(...this.tabs.map(x => x.index))) {
             this.finish.emit();
             return;
         }
 
         //this.tabs[this.activeTab.index + 1].active = true;
-        let nextTab = this.tabs.find(x=> x.index >= this.activeTab.index + 1);
+        let nextTab = this.tabs.find(x => x.index >= this.activeTab.index + 1);
 
-        if(nextTab)
+        if (nextTab)
             nextTab.active = true;
     }
 

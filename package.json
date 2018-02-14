@@ -1,6 +1,6 @@
 {
   "name": "ngx-wizard",
-  "version": "0.0.11",
+  "version": "0.0.12",
   "scripts": {
     "start": "tsc -p playground && tsc -p src && concurrently \"tsc -p playground -w\" \"tsc -p src -w\" \"lite-server --config sync-bs-config.json\" ",
     "packagr": "ng-packagr -p ng-package.json",

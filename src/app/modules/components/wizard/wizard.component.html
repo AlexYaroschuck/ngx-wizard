@@ -1,6 +1,11 @@
 <div class="wizard-container">
 
-    <div class="nav-center">
+    <div class="progress" *ngIf="showProgressBar">
+        <div class="progress-bar" role="progressbar" [ngStyle]="{'width':  progress +'%'}">
+        </div>
+    </div>
+
+    <div class="nav-center" *ngIf="showHeader">
         <ul class="nav nav-pills nav-pills-warning nav-pills-icons" role="tablist">
             <ng-container *ngFor="let tab of tabs">
                 <li (click)="tab.active = true" [class.active]="tab.active" >
