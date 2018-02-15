@@ -36,6 +36,11 @@ export class WizardComponent extends TabsComponent {
     public ngAfterViewInit(): void {
         setTimeout(() => {
             this.initAnimation();
+
+            let t = this.tabs[0];
+
+            if(t != null)
+                t.active = true;
         });
     }
 
