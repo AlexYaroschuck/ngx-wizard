@@ -35,7 +35,7 @@ import { WizardModule } from "ngx-wizard";
 # Examples
 ``` html
 <wizard nextButtonClass='my-custom-class' prevButtonClass='my-custom-class'>
-	<tab [index]="1" previousButton="hidden" nextButton="hidden" icon="iso" class="my_class">
+	<tab [index]="1" previousButton="hidden" [isNextButtonDisabled]='true' nextButton="hidden" icon="iso" class="my_class">
 		<!--Any content that you need-->
 	</tab>
 	<tab [index]="0" (isSelect)="doSomeAction()" nextButton="go next">
@@ -62,6 +62,7 @@ import { WizardModule } from "ngx-wizard";
  nextButton ="string" //=> name of next button, if name is "hidden" then won't show this button
  index = number //=> ordering for tabs, the lowens index wil be at the start
  active = boolean //=> manually set the active tab
+ isNextButtonDisabled = boolean //=> set enable or disabe nextButton
 
 /*Output params*/
 isSelect - EventEmitter //=> fires when tab selected
