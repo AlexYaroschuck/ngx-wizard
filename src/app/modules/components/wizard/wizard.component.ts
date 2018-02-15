@@ -40,7 +40,7 @@ export class WizardComponent extends TabsComponent {
     }
 
     public get progress(): number {
-        let currentTab = this.tabs.find(x => x.index >= this.activeTab.index);
+        let currentTab = this.tabs.find(x => x.index == this.activeTab.index);
         let activeTabs = this.tabs.filter(tab => tab.index >= 0);
 
         let index = activeTabs.indexOf(currentTab);

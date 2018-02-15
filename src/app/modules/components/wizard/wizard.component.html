@@ -29,7 +29,7 @@
 
         <div class="wizard-footer">
             <div *ngIf="nextButtonVisible">
-                <input #nextButton type='button' [ngClass]="nextButtonClass" name='next' [value]='nextButtonText' (click)="nextTab()"/>
+                <input #nextButton type='button' [disabled]="activeTab.isNextButtonDisabled" [ngClass]="[activeTab.isNextButtonDisabled ? 'disabled' : '', nextButtonClass]" name='next' [value]='nextButtonText' (click)="nextTab()"/>
             </div>
             <div *ngIf="previousButtonVisible" >
                 <input #previosButton type='button' [ngClass]="prevButtonClass" name='previous' [value]='previousButtonText' (click)="previousTab()"/>
