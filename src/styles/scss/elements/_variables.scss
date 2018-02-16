@@ -1,140 +1,40 @@
-.nav-pills{
+$mdb-btn-font-size-base: 12px !default;
+$mdb-btn-font-size-lg: 14px !default;
+$mdb-btn-font-size-sm: 11px !default;
+$mdb-btn-font-size-xs: 10px !default;
 
-  .section-dark &,
-  .section-image &{
-    > li > a{
-      color: $gray-color;
-    }
-    > li{
-      > a:hover,
-      > a:focus{
-        background-color: #EEEEEE;
-      }
-    }
-  }
+// Typography
+$font-weight-light: 300 !default;
+$font-weight-default: 400 !default;
+$font-weight-bold:    500 !default;
+$font-weight-extra-bold: 700 !default;
+$font-weight-ultra-bold: 900 !default;
 
-  > li {
-    > a{
-      line-height: $mdb-btn-font-size-base * 2;
-      text-transform: uppercase;
-      font-size: $mdb-btn-font-size-base;
-      font-weight: $font-weight-bold;
-      min-width: 100px;
-      text-align: center;
-      color: $gray;
-      transition: all .3s;
+//## Gray and brand colors for use across Bootstrap.
 
-      &:hover{
-        background-color: rgba(200, 200, 200, 0.2);
-      }
-    }
+$gray-base:              #000 !default;
+$gray-darker:            lighten($gray-base, 13.5%) !default; // #222
+$gray-dark:              lighten($gray-base, 20%) !default;   // #333
+$gray:                   lighten($gray-base, 33.5%) !default; // #555
+$gray-light:             #999999 !default; // #999999
+$gray-lighter:           lighten($gray-base, 93.5%) !default; // #eee
+$gray-color:  #999999 !default;
 
-    i{
-      display: block;
-      font-size: 30px;
-      padding: 15px 0;
-    }
+$brand-primary:         darken(#428bca, 6.5%) !default; // #337ab7
+$brand-success:         #5cb85c !default;
+$brand-info:            #5bc0de !default;
+$brand-warning:         #f0ad4e !default;
+$brand-danger:          #d9534f !default;
+$brand-rose:            #e91e63  !default;
+$brand-cyan:            #00bcd4 !default;
 
-    &.active > a{
-      &,
-      &:focus,
-      &:hover{
-        background-color: $brand-primary;
-        color: $white-color;
-        @include shadow-big-color($brand-primary);
-      }
-    }
+$white-color: #FFFFFF !default;
 
-  }
+$border-radius-extreme: 30px !default;
 
-  &:not(.nav-pills-icons){
-    > li > a{
-      border-radius: $border-radius-extreme;
-    }
-  }
-
-  &.nav-stacked{
-    > li + li{
-      margin: 10px 0;
-    }
-  }
-
-  &.nav-pills-info{
-    > li {
-      &.active > a{
-        &,
-        &:focus,
-        &:hover{
-          background-color: $brand-info;
-          @include shadow-big-color($brand-info);
-        }
-      }
-    }
-  }
-
-  &.nav-pills-success{
-    > li {
-      &.active > a{
-        &,
-        &:focus,
-        &:hover{
-          background-color: $brand-success;
-          @include shadow-big-color($brand-success);
-        }
-      }
-    }
-  }
-
-  &.nav-pills-warning{
-    > li {
-      &.active > a{
-        &,
-        &:focus,
-        &:hover{
-          background-color: $brand-warning;
-          @include shadow-big-color($brand-warning);
-        }
-      }
-    }
-  }
-
-  &.nav-pills-danger{
-    > li {
-      &.active > a{
-        &,
-        &:focus,
-        &:hover{
-          background-color: $brand-danger;
-          @include shadow-big-color($brand-warning);
-        }
-      }
-    }
-  }
-
-  &.nav-pills-rose{
-    > li {
-      &.active > a{
-        &,
-        &:focus,
-        &:hover{
-          background-color: $brand-rose;
-          @include shadow-big-color($brand-rose);
-        }
-      }
-    }
-  }
-
-  &.nav-pills-cyan{
-    > li {
-      &.active > a{
-        &,
-        &:focus,
-        &:hover{
-          background-color: $brand-cyan;
-          @include shadow-big-color($brand-cyan);
-        }
-      }
-    }
-  }
-
+// Mixins
+@mixin shadow-big-color($color){
+  // new box shadow optimized for Tablets and Phones
+  box-shadow: 0 4px 20px 0px rgba(0, 0, 0, .14),
+  0 7px 10px -5px rgba($color, 0.4)
 }

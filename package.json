@@ -3,10 +3,10 @@
   "version": "0.0.21",
   "scripts": {
     "start": "tsc -p playground && tsc -p src && concurrently \"tsc -p playground -w\" \"tsc -p src -w\" \"lite-server --config sync-bs-config.json\" ",
-    "packagr": "ng-packagr -p ng-package.json",
     "yarn" : "yarn",
     "build" : "ngc -p src/tsconfig.webpack.json",
-    "build-sass": "node-sass src/styles/scss -o src/css --linefeed crlf"
+    "build-sass": "node-sass src/styles/scss -o dist/css --linefeed crlf",
+    "packagr": "ng-packagr -p ng-package.json && node-sass src/styles/scss -o dist/css --linefeed crlf"
   },
   "repository": {
     "type": "git",
