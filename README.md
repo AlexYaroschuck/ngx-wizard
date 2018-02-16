@@ -34,7 +34,7 @@ import { WizardModule } from "ngx-wizard";
 
 # Examples
 ``` html
-<wizard nextButtonClass='my-custom-class' prevButtonClass='my-custom-class'>
+<wizard nextButtonClass='my-custom-class' prevButtonClass='my-custom-class' #wizard>
 	<tab [index]="1" previousButton="hidden" [isNextButtonDisabled]='true' nextButton="hidden" icon="iso" class="my_class">
 		<!--Any content that you need-->
 	</tab>
@@ -44,12 +44,25 @@ import { WizardModule } from "ngx-wizard";
 	</tab>
 	<!-- Any anounts of tabs -->
 </wizard>
+
+... component.ts
+@ViewChild(#wizard) wizard: WizardComponent //you can access properties by using ViewChild
+anyMethod(): void {
+    wizard.tabs: Array<TabDirective> //=> list of active(index must be >= 0) tabs, only avaliable after View Init
+    wizard.activeTab: TabDirective //=> get the activeTab
+    
+    //you can manualy fire nextTab
+    wizard.nextTab(false/*emitContinue*/); //input parameter => set to fire onContinueClicked event
+}
+...
 ```
 # Wizard Options
 ``` ts
 /*Input params*/
  nextButtonClass: string = "pull-right" //=> will add custom class to the nextButton, default class is "btn btn-next btn-fill btn-wd"
  prevButtonClass: string = "pull-left" //=> will add custom class to the previousButton, default class is "btn btn-previous btn-fill btn-default btn-wd"
+ showProgressBar: boolean = false //=> show or hide progress bar, by default it's false
+ showHeader: boolean = true //=> show or hide heading tabs, by default it's true
 ```
 # Tab Options
 ``` ts
@@ -62,14 +75,16 @@ import { WizardModule } from "ngx-wizard";
  nextButton ="string" //=> name of next button, if name is "hidden" then won't show this button
  index = number //=> ordering for tabs, the lowens index wil be at the start
  active = boolean //=> manually set the active tab
- isNextButtonDisabled = boolean //=> set enable or disabe nextButton
+ isNextButtonDisabled //=> boolean //=> set enable or disabe nextButton
 
 /*Output params*/
-isSelect - EventEmitter //=> fires when tab selected
+isSelect - EventEmitter<event> //=> fires when tab selected
 deselect - EventEmitter //=> fires when tab deselected
 removed- EventEmitter //=> fires when tab removed
-check - EventEmitter //=> fires when tab checked
-onContinueClicked - EventEmitter //=> fires when nextButton clicked
+check - EventEmitter<event> //=> fires when tab checked
+onContinueClicked - EventEmitter<event> //=> fires when nextButton clicked
+
+//event has preventDefault method, so if you want to manualy drives the countinue or other buttons you can handle this using preventDefault()
 
 ```
 
