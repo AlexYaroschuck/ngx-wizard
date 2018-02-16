@@ -37,7 +37,7 @@ export class TabsComponent implements AfterViewInit, OnInit, OnDestroy {
 
         this.sortTabs();
 
-        tab.active = this.tabs.length === 1 && tab.active !== false;
+        //tab.active = this.tabs.length === 1 && tab.active !== false;
     }
 
     public sortTabs(): void{

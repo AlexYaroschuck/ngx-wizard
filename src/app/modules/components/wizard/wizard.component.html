@@ -27,7 +27,7 @@
             <ng-content></ng-content>
         </div>
 
-        <div class="wizard-footer">
+        <div class="wizard-footer" *ngIf="activeTab">
             <div *ngIf="nextButtonVisible">
                 <input #nextButton type='button' [disabled]="activeTab.isNextButtonDisabled" [ngClass]="[activeTab.isNextButtonDisabled ? 'disabled' : '', nextButtonClass]" name='next' [value]='nextButtonText' (click)="nextTab()"/>
             </div>

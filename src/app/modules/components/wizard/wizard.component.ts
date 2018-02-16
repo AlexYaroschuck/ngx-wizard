@@ -35,16 +35,21 @@ export class WizardComponent extends TabsComponent {
 
     public ngAfterViewInit(): void {
         setTimeout(() => {
+            if (!this.tabs.find(x => x.active)) //If manually set to active
+            {
+                let t = this.tabs[0];
+
+                if (t != null)
+                    t.active = true;
+            }
             this.initAnimation();
-
-            let t = this.tabs[0];
-
-            if(t != null)
-                t.active = true;
         });
     }
 
     public get progress(): number {
+        if (!this.activeTab)
+            return;
+
         let currentTab = this.tabs.find(x => x.index == this.activeTab.index);
         let activeTabs = this.tabs.filter(tab => tab.index >= 0);
 
