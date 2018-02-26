@@ -19,6 +19,7 @@ export class WizardComponent extends TabsComponent {
     @Input() public nextButton: string;
     @Input() public showProgressBar: boolean = false;
     @Input() public showHeader: boolean = true;
+    @Input() public scrollClassRef: string = null;
 
     public previousButtonText: string;
     public nextButtonText: string;
@@ -77,8 +78,15 @@ export class WizardComponent extends TabsComponent {
         //this.tabs[this.activeTab.index + 1].active = true;
         let nextTab = this.tabs.find(x => x.index >= this.activeTab.index + 1);
 
-        if (nextTab)
+        if (nextTab){
             nextTab.active = true;
+
+            const el = document.querySelector(this.scrollClassRef);
+
+            if (el) {
+                el.scrollTop = 0
+            }
+        }
     }
 
     public previousTab(): void {
