@@ -76,6 +76,7 @@ anyMethod(): void {
  index = number //=> ordering for tabs, the lowens index wil be at the start
  active = boolean //=> manually set the active tab
  isNextButtonDisabled //=> boolean //=> set enable or disabe nextButton
+ isPrevButtonDisabled //=> boolean //=> set enable or disabe prevButton
  buttonTemplate //=> ng-template - set custom prev/cont button template
 
 /*Output params*/
@@ -84,6 +85,7 @@ deselect - EventEmitter //=> fires when tab deselected
 removed- EventEmitter //=> fires when tab removed
 check - EventEmitter<event> //=> fires when tab checked
 onContinueClicked - EventEmitter<event> //=> fires when nextButton clicked
+onPreviousClicked - EventEmitter<event> //=> fires when prevButton clicked
 
 //event has preventDefault method, so if you want to manualy drives the countinue or other buttons you can handle this using preventDefault()
 

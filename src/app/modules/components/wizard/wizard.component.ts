@@ -4,6 +4,7 @@ import { TabsComponent } from "../tabs/tabs.component";
 import "jquery";
 import { TabDirective } from "../../directives/tab.directive";
 import { SelectEvent } from "../../../objects/events/selectEvent";
+import { BaseEvent } from "../../../objects/events/baseEvent";
 
 declare var $: any;
 
@@ -29,6 +30,8 @@ export class WizardComponent extends TabsComponent {
 
     @Output() public finish: EventEmitter<WizardComponent> = new EventEmitter();
 
+    @ViewChild("prevButton") previousButtonRef: any;
+    @ViewChild("continueButton") continueButtonRef: any;
 
     constructor(elementRef: ElementRef) {
         super();
@@ -61,8 +64,8 @@ export class WizardComponent extends TabsComponent {
     }
 
     public nextTab(emitContinue: boolean = true): void {
-        if (emitContinue) {//TODO think!!
-            let continueEvent = new SelectEvent(this.activeTab);
+        if (emitContinue) {
+            let continueEvent = new BaseEvent(this.activeTab);
             this.activeTab.onContinueClicked.emit(continueEvent);
 
             if (continueEvent._preventDefault) {
@@ -81,19 +84,38 @@ export class WizardComponent extends TabsComponent {
         if (nextTab){
             nextTab.active = true;
 
-            const el = document.querySelector(this.scrollClassRef);
-
-            if (el) {
-                el.scrollTop = 0
-            }
+            this.scrollTop();
         }
     }
 
-    public previousTab(): void {
+    private scrollTop(): void{
+        const el = document.querySelector(this.scrollClassRef);
+
+        if (el) {
+            el.scrollTop = 0
+        }
+    }
+
+    public previousTab(emitPrevious: boolean = true): void {
         if (this.activeTab.index <= 0)
             return;
 
-        this.tabs[this.activeTab.index - 1].active = true;
+        if (emitPrevious) {
+            let previousEvent = new BaseEvent(this.activeTab);
+            this.activeTab.onPreviousClicked.emit(previousEvent);
+
+            if (previousEvent._preventDefault) {
+                return;
+            }
+        }
+
+        let prevTab = this.tabs.find(x => x.index >= this.activeTab.index - 1);
+
+        if (prevTab){
+            prevTab.active = true;
+
+            this.scrollTop();
+        }
     }
 
     private initAnimation(): void {

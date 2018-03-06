@@ -29,18 +29,29 @@
 
         <div class="wizard-footer" *ngIf="activeTab">
             <ng-container *ngIf="!activeTab.buttonTemplate">
-                <div *ngIf="nextButtonVisible">
-                    <input #nextButton type='button' [disabled]="activeTab.isNextButtonDisabled" [ngClass]="[activeTab.isNextButtonDisabled ? 'disabled' : '', nextButtonClass]"
-                           name='next' [value]='nextButtonText' (click)="nextTab()"/>
-                </div>
-                <div *ngIf="previousButtonVisible">
-                    <input #previosButton type='button' [ngClass]="prevButtonClass" name='previous' [value]='previousButtonText' (click)="previousTab()"/>
-                </div>
+                <ng-container  [ngTemplateOutlet]="continueButton"></ng-container>
+                <ng-container  [ngTemplateOutlet]="prevButton"></ng-container>
                 <div class="clearfix"></div>
             </ng-container>
 
-            <ng-container *ngIf="activeTab.buttonTemplate" [ngTemplateOutlet]="activeTab.buttonTemplate"></ng-container>
+            <ng-container *ngIf="activeTab.buttonTemplate" [ngTemplateOutlet]="activeTab.buttonTemplate">
+
+            </ng-container>
         </div>
     </div>
 </div>
+
+<ng-template #continueButton>
+    <div *ngIf="nextButtonVisible">
+        <input #nextButton type='button' [disabled]="activeTab.isNextButtonDisabled" [ngClass]="[activeTab.isNextButtonDisabled ? 'disabled' : '', nextButtonClass]"
+               name='next' [value]='nextButtonText' (click)="nextTab()"/>
+    </div>
+</ng-template>
+
+<ng-template #prevButton>
+    <div *ngIf="previousButtonVisible">
+        <input #previosButton type='button' [disabled]="activeTab.isPrevButtonDisabled" [ngClass]="[activeTab.isPrevButtonDisabled ? 'disabled' : '', prevButtonClass]"
+               name='previous' [value]='previousButtonText' (click)="previousTab()"/>
+    </div>
+</ng-template>
 

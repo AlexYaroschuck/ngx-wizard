@@ -14,6 +14,7 @@ export class TabDirective implements OnInit, OnDestroy {
     @Input() public icon: string;
     @Input() public previousButton: string;
     @Input() public isNextButtonDisabled: boolean;
+    @Input() public isPrevButtonDisabled: boolean;
     @Input() public buttonTemplate: any;
 
     private _nextButton:string;
@@ -102,6 +103,7 @@ export class TabDirective implements OnInit, OnDestroy {
     @Output() public deselect: EventEmitter<TabDirective> = new EventEmitter();
     @Output() public removed: EventEmitter<TabDirective> = new EventEmitter();
     @Output() public onContinueClicked: EventEmitter<SelectEvent> = new EventEmitter();
+    @Output() public onPreviousClicked: EventEmitter<SelectEvent> = new EventEmitter();
 
     @HostBinding('class.tab-pane') public addClass: boolean = true;
 
