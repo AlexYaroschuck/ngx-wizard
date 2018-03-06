@@ -8,7 +8,7 @@
     <div class="nav-center" *ngIf="showHeader">
         <ul class="nav nav-pills nav-pills-warning nav-pills-icons" role="tablist">
             <ng-container *ngFor="let tab of tabs">
-                <li (click)="tab.active = true" [class.active]="tab.active" >
+                <li (click)="tab.active = true" [class.active]="tab.active">
                     <a data-toggle="tab" role="tab" [ngClass]="tab.customClass">
                         <i class="material-icons">{{ tab.icon }}</i>
                         <div class="tab-info">
@@ -28,13 +28,18 @@
         </div>
 
         <div class="wizard-footer" *ngIf="activeTab">
-            <div *ngIf="nextButtonVisible">
-                <input #nextButton type='button' [disabled]="activeTab.isNextButtonDisabled" [ngClass]="[activeTab.isNextButtonDisabled ? 'disabled' : '', nextButtonClass]" name='next' [value]='nextButtonText' (click)="nextTab()"/>
-            </div>
-            <div *ngIf="previousButtonVisible" >
-                <input #previosButton type='button' [ngClass]="prevButtonClass" name='previous' [value]='previousButtonText' (click)="previousTab()"/>
-            </div>
-            <div class="clearfix"></div>
+            <ng-container *ngIf="!activeTab.buttonTemplate">
+                <div *ngIf="nextButtonVisible">
+                    <input #nextButton type='button' [disabled]="activeTab.isNextButtonDisabled" [ngClass]="[activeTab.isNextButtonDisabled ? 'disabled' : '', nextButtonClass]"
+                           name='next' [value]='nextButtonText' (click)="nextTab()"/>
+                </div>
+                <div *ngIf="previousButtonVisible">
+                    <input #previosButton type='button' [ngClass]="prevButtonClass" name='previous' [value]='previousButtonText' (click)="previousTab()"/>
+                </div>
+                <div class="clearfix"></div>
+            </ng-container>
+
+            <ng-container *ngIf="activeTab.buttonTemplate" [ngTemplateOutlet]="activeTab.buttonTemplate"></ng-container>
         </div>
     </div>
 </div>

@@ -14,6 +14,7 @@ export class TabDirective implements OnInit, OnDestroy {
     @Input() public icon: string;
     @Input() public previousButton: string;
     @Input() public isNextButtonDisabled: boolean;
+    @Input() public buttonTemplate: any;
 
     private _nextButton:string;
 

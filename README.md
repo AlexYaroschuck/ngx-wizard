@@ -76,6 +76,7 @@ anyMethod(): void {
  index = number //=> ordering for tabs, the lowens index wil be at the start
  active = boolean //=> manually set the active tab
  isNextButtonDisabled //=> boolean //=> set enable or disabe nextButton
+ buttonTemplate //=> ng-template - set custom prev/cont button template
 
 /*Output params*/
 isSelect - EventEmitter<event> //=> fires when tab selected
