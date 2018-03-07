@@ -81,8 +81,6 @@ anyMethod(): void {
  active = boolean //=> manually set the active tab
  isNextButtonDisabled //=> boolean //=> set enable or disabe nextButton
  isPrevButtonDisabled //=> boolean //=> set enable or disabe prevButton
- isNextIconNeeded //=> boolean //=> set enable or disabe nextButton Icon
- isPrevIconNeeded //=> boolean //=> set enable or disabe prevButton Icon
  buttonTemplate //=> ng-template - set custom prev/cont button template
 
 /*Output params*/

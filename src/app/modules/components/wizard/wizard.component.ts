@@ -31,8 +31,6 @@ export class WizardComponent extends TabsComponent {
     public previousButtonVisible: boolean;
     public nextButtonVisible: boolean;
     public currentProgress: number = 0;
-    public isNextIconNeeded: boolean;
-    public isPrevIconNeeded: boolean;
 
     @Output() public finish: EventEmitter<WizardComponent> = new EventEmitter();
 
