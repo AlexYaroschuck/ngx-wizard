@@ -61,6 +61,10 @@ anyMethod(): void {
 /*Input params*/
  nextButtonClass: string = "pull-right" //=> will add custom class to the nextButton, default class is "btn btn-next btn-fill btn-wd"
  prevButtonClass: string = "pull-left" //=> will add custom class to the previousButton, default class is "btn btn-previous btn-fill btn-default btn-wd"
+ nextIconClass: string = "material-icons" //=> will add custom class to the nextButton Icon, default class is "material-icons"
+ nextIconText: string = "arrow_forward" //=> will add custom text to the nextButton Icon, default text is "arrow_forward"
+ prevIconClass: string = "material-icons" //=> will add custom class to the prevButton Icon, default class is "material-icons"
+ prevIconText: string = "arrow_back" //=> will add custom text to the nextButton Icon, default text is "arrow_back""
  showProgressBar: boolean = false //=> show or hide progress bar, by default it's false
  showHeader: boolean = true //=> show or hide heading tabs, by default it's true
 ```
@@ -77,6 +81,8 @@ anyMethod(): void {
  active = boolean //=> manually set the active tab
  isNextButtonDisabled //=> boolean //=> set enable or disabe nextButton
  isPrevButtonDisabled //=> boolean //=> set enable or disabe prevButton
+ isNextIconNeeded //=> boolean //=> set enable or disabe nextButton Icon
+ isPrevIconNeeded //=> boolean //=> set enable or disabe prevButton Icon
  buttonTemplate //=> ng-template - set custom prev/cont button template
 
 /*Output params*/

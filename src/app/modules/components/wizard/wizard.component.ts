@@ -16,6 +16,10 @@ declare var $: any;
 export class WizardComponent extends TabsComponent {
     @Input() public nextButtonClass: string = "btn btn-next btn-fill btn-wd";
     @Input() public prevButtonClass: string = "btn btn-previous btn-fill btn-default btn-wd";
+    @Input() public nextIconClass: string = "material-icons";
+    @Input() public nextIconText: string = "arrow_forward";
+    @Input() public prevIconClass: string = "material-icons";
+    @Input() public prevIconText: string = "arrow_back";
     @Input() public previousButton: string;
     @Input() public nextButton: string;
     @Input() public showProgressBar: boolean = false;
@@ -27,6 +31,8 @@ export class WizardComponent extends TabsComponent {
     public previousButtonVisible: boolean;
     public nextButtonVisible: boolean;
     public currentProgress: number = 0;
+    public isNextIconNeeded: boolean;
+    public isPrevIconNeeded: boolean;
 
     @Output() public finish: EventEmitter<WizardComponent> = new EventEmitter();
 
