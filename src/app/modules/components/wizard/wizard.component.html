@@ -42,17 +42,17 @@
 </div>
 
 <ng-template #continueButton>
-    <div *ngIf="nextButtonVisible">
+    <div *ngIf="nextButtonVisible" (click)="nextTab()">
         <input #nextButton type='button' [disabled]="activeTab.isNextButtonDisabled" [ngClass]="[activeTab.isNextButtonDisabled ? 'disabled' : '', nextButtonClass]"
-               name='next' [value]='nextButtonText' (click)="nextTab()"/>
+               name='next' [value]='nextButtonText' />
         <i *ngIf="nextIconText && nextIconClass" [ngClass]="[nextIconClass]">{{nextIconText}}</i>
     </div>
 </ng-template>
 
-<ng-template #prevButton>
+<ng-template #prevButton (click)="previousTab()">
     <div *ngIf="previousButtonVisible">
         <input #previosButton type='button' [disabled]="activeTab.isPrevButtonDisabled" [ngClass]="[activeTab.isPrevButtonDisabled ? 'disabled' : '', prevButtonClass]"
-               name='previous' [value]='previousButtonText' (click)="previousTab()"/>
+               name='previous' [value]='previousButtonText' />
         <i *ngIf="prevIconText && prevIconClass" [ngClass]="[prevIconClass]">{{prevIconText}}</i>
     </div>
 </ng-template>
