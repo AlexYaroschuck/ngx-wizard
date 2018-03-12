@@ -68,6 +68,9 @@ export class WizardComponent extends TabsComponent {
     }
 
     public nextTab(emitContinue: boolean = true): void {
+        if(this.activeTab.isNextButtonDisabled)
+            return;
+
         if (emitContinue) {
             let continueEvent = new BaseEvent(this.activeTab);
             this.activeTab.onContinueClicked.emit(continueEvent);
@@ -101,6 +104,9 @@ export class WizardComponent extends TabsComponent {
     }
 
     public previousTab(emitPrevious: boolean = true): void {
+        if(this.activeTab.isPrevButtonDisabled)
+            return;
+
         if (this.activeTab.index <= 0)
             return;
 
