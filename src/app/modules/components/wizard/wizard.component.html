@@ -49,8 +49,8 @@
     </div>
 </ng-template>
 
-<ng-template #prevButton (click)="previousTab()">
-    <div *ngIf="previousButtonVisible">
+<ng-template #prevButton >
+    <div *ngIf="previousButtonVisible" (click)="previousTab()">
         <input #previosButton type='button' [disabled]="activeTab.isPrevButtonDisabled" [ngClass]="[activeTab.isPrevButtonDisabled ? 'disabled' : '', prevButtonClass]"
                name='previous' [value]='previousButtonText' />
         <i *ngIf="prevIconText && prevIconClass" [ngClass]="[prevIconClass]">{{prevIconText}}</i>
