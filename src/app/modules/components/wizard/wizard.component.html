@@ -42,7 +42,6 @@
 </div>
 
 <ng-template #continueButton>
-    {{activeTab.isNextButtonDisabled}}
     <div class="btn-container" *ngIf="nextButtonVisible" (click)="nextTab()"
          [ngClass]="[activeTab.isNextButtonDisabled ? 'disabled' : '']">
         <input #nextButton type='button' [ngClass]="[nextButtonClass]"
