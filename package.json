@@ -1,11 +1,12 @@
 {
   "name": "ngx-wizard",
-  "version": "0.0.34",
+  "version": "0.0.40",
   "scripts": {
     "start": "tsc -p playground && tsc -p src && concurrently \"tsc -p playground -w\" \"tsc -p src -w\" \"lite-server --config sync-bs-config.json\" ",
-    "packagr": "ng-packagr -p ng-package.json",
     "yarn" : "yarn",
-    "build" : "ngc -p src/tsconfig.webpack.json"
+    "build" : "ngc -p src/tsconfig.webpack.json",
+    "build-sass": "node-sass src/styles/scss -o dist/css --linefeed crlf",
+    "packagr": "ng-packagr -p ng-package.json && node-sass src/styles/scss -o dist/css --linefeed crlf"
   },
   "repository": {
     "type": "git",
@@ -37,7 +38,8 @@
     "typedoc": "^0.9.0",
     "typescript": "^2.6.2",
     "zone.js": "^0.8.20",
-    "@ngtools/webpack" : "^1.9.7"
+    "@ngtools/webpack" : "^1.9.7",
+    "node-sass": "^4.7.2"
   },
   "dependencies": {
     "jquery": "^3.3.1"
