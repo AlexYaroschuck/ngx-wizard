@@ -61,6 +61,10 @@ anyMethod(): void {
 /*Input params*/
  nextButtonClass: string = "pull-right" //=> will add custom class to the nextButton, default class is "btn btn-next btn-fill btn-wd"
  prevButtonClass: string = "pull-left" //=> will add custom class to the previousButton, default class is "btn btn-previous btn-fill btn-default btn-wd"
+ nextIconClass: string = "material-icons" //=> will add custom class to the nextButton Icon, default class is "material-icons"
+ nextIconText: string = "arrow_forward" //=> will add custom text to the nextButton Icon, default text is "arrow_forward"
+ prevIconClass: string = "material-icons" //=> will add custom class to the prevButton Icon, default class is "material-icons"
+ prevIconText: string = "arrow_back" //=> will add custom text to the nextButton Icon, default text is "arrow_back""
  showProgressBar: boolean = false //=> show or hide progress bar, by default it's false
  showHeader: boolean = true //=> show or hide heading tabs, by default it's true
 ```
@@ -76,6 +80,8 @@ anyMethod(): void {
  index = number //=> ordering for tabs, the lowens index wil be at the start
  active = boolean //=> manually set the active tab
  isNextButtonDisabled //=> boolean //=> set enable or disabe nextButton
+ isPrevButtonDisabled //=> boolean //=> set enable or disabe prevButton
+ buttonTemplate //=> ng-template - set custom prev/cont button template
 
 /*Output params*/
 isSelect - EventEmitter<event> //=> fires when tab selected
@@ -83,6 +89,7 @@ deselect - EventEmitter //=> fires when tab deselected
 removed- EventEmitter //=> fires when tab removed
 check - EventEmitter<event> //=> fires when tab checked
 onContinueClicked - EventEmitter<event> //=> fires when nextButton clicked
+onPreviousClicked - EventEmitter<event> //=> fires when prevButton clicked
 
 //event has preventDefault method, so if you want to manualy drives the countinue or other buttons you can handle this using preventDefault()
 

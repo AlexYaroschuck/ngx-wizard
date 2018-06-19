@@ -4,6 +4,7 @@ import { TabsComponent } from "../tabs/tabs.component";
 import "jquery";
 import { TabDirective } from "../../directives/tab.directive";
 import { SelectEvent } from "../../../objects/events/selectEvent";
+import { BaseEvent } from "../../../objects/events/baseEvent";
 
 declare var $: any;
 
@@ -15,6 +16,10 @@ declare var $: any;
 export class WizardComponent extends TabsComponent {
     @Input() public nextButtonClass: string = "btn btn-next btn-fill btn-wd";
     @Input() public prevButtonClass: string = "btn btn-previous btn-fill btn-default btn-wd";
+    @Input() public nextIconClass: string = "material-icons";
+    @Input() public nextIconText: string = "arrow_forward";
+    @Input() public prevIconClass: string = "material-icons";
+    @Input() public prevIconText: string = "arrow_back";
     @Input() public previousButton: string;
     @Input() public nextButton: string;
     @Input() public showProgressBar: boolean = false;
@@ -29,6 +34,8 @@ export class WizardComponent extends TabsComponent {
 
     @Output() public finish: EventEmitter<WizardComponent> = new EventEmitter();
 
+    @ViewChild("prevButton") previousButtonRef: any;
+    @ViewChild("continueButton") continueButtonRef: any;
 
     constructor(elementRef: ElementRef) {
         super();
@@ -61,8 +68,11 @@ export class WizardComponent extends TabsComponent {
     }
 
     public nextTab(emitContinue: boolean = true): void {
-        if (emitContinue) {//TODO think!!
-            let continueEvent = new SelectEvent(this.activeTab);
+        if(this.activeTab.isNextButtonDisabled)
+            return;
+
+        if (emitContinue) {
+            let continueEvent = new BaseEvent(this.activeTab);
             this.activeTab.onContinueClicked.emit(continueEvent);
 
             if (continueEvent._preventDefault) {
@@ -81,19 +91,41 @@ export class WizardComponent extends TabsComponent {
         if (nextTab){
             nextTab.active = true;
 
-            const el = document.querySelector(this.scrollClassRef);
-
-            if (el) {
-                el.scrollTop = 0
-            }
+            this.scrollTop();
         }
     }
 
-    public previousTab(): void {
+    private scrollTop(): void{
+        const el = document.querySelector(this.scrollClassRef);
+
+        if (el) {
+            el.scrollTop = 0
+        }
+    }
+
+    public previousTab(emitPrevious: boolean = true): void {
+        if(this.activeTab.isPrevButtonDisabled)
+            return;
+
         if (this.activeTab.index <= 0)
             return;
 
-        this.tabs[this.activeTab.index - 1].active = true;
+        if (emitPrevious) {
+            let previousEvent = new BaseEvent(this.activeTab);
+            this.activeTab.onPreviousClicked.emit(previousEvent);
+
+            if (previousEvent._preventDefault) {
+                return;
+            }
+        }
+
+        let prevTab = this.tabs.find(x => x.index >= this.activeTab.index - 1);
+
+        if (prevTab){
+            prevTab.active = true;
+
+            this.scrollTop();
+        }
     }
 
     private initAnimation(): void {

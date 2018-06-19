@@ -1,6 +1,6 @@
 {
   "name": "ngx-wizard",
-  "version": "0.0.23",
+  "version": "0.0.34",
   "scripts": {
     "start": "tsc -p playground && tsc -p src && concurrently \"tsc -p playground -w\" \"tsc -p src -w\" \"lite-server --config sync-bs-config.json\" ",
     "yarn" : "yarn",
@@ -12,6 +12,7 @@
     "type": "git",
     "url": "https://github.com/AlexYaroschuck/ngx-wizard"
   },
+  "keywords": ["ngx-wizard", "tabs", "wizard", "angular" , "angular 4", "ng4", "angular 2", "ng2", "ng2-wizard"],
   "license": "MIT",
   "peerDependencies": {},
   "devDependencies": {
