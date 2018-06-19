@@ -88,6 +88,7 @@ export class WizardComponent extends TabsComponent {
         //this.tabs[this.activeTab.index + 1].active = true;
         let nextTab = this.tabs.find(x => x.index >= this.activeTab.index + 1);
 
+
         if (nextTab){
             nextTab.active = true;
 
@@ -104,11 +105,14 @@ export class WizardComponent extends TabsComponent {
     }
 
     public previousTab(emitPrevious: boolean = true): void {
-        if(this.activeTab.isPrevButtonDisabled)
+        if(this.activeTab.isPrevButtonDisabled){
             return;
+        }
 
-        if (this.activeTab.index <= 0)
+
+        if (this.activeTab.index <= 0){
             return;
+        }
 
         if (emitPrevious) {
             let previousEvent = new BaseEvent(this.activeTab);
@@ -119,7 +123,9 @@ export class WizardComponent extends TabsComponent {
             }
         }
 
-        let prevTab = this.tabs.find(x => x.index >= this.activeTab.index - 1);
+        let prevTabs = this.tabs.filter(x => (x.index <= this.activeTab.index - 1) && (this.activeTab.index != -1));
+
+        let prevTab = prevTabs[prevTabs.length - 1];
 
         if (prevTab){
             prevTab.active = true;
