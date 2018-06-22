@@ -20,6 +20,8 @@ export class WizardComponent extends TabsComponent {
     @Input() public nextIconText: string = "arrow_forward";
     @Input() public prevIconClass: string = "material-icons";
     @Input() public prevIconText: string = "arrow_back";
+    @Input() public previousButtonContainerClass: string = '';
+    @Input() public nextButtonContainerClass: string = '';
     @Input() public previousButton: string;
     @Input() public nextButton: string;
     @Input() public showProgressBar: boolean = false;
@@ -87,7 +89,7 @@ export class WizardComponent extends TabsComponent {
 
         //this.tabs[this.activeTab.index + 1].active = true;
         let nextTab = this.tabs.find(x => x.index >= this.activeTab.index + 1);
-
+        console.log(nextTab);
 
         if (nextTab){
             nextTab.active = true;

@@ -1,6 +1,6 @@
 {
   "name": "ngx-wizard",
-  "version": "0.0.40",
+  "version": "0.0.41",
   "scripts": {
     "start": "tsc -p playground && tsc -p src && concurrently \"tsc -p playground -w\" \"tsc -p src -w\" \"lite-server --config sync-bs-config.json\" ",
     "yarn" : "yarn",
